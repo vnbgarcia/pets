@@ -1,0 +1,14 @@
+{
+  "name": "pets",
+  "version": "1.0.0",
+  "description": "Backend de APIs para o curso Vem Ser Dev",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Murilo Beltrame",
+  "license": "MIT"
+}
