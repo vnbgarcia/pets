@@ -10,16 +10,19 @@ class Pet extends Model {
   declare gender: string;
 }
 
-Pet.init({
-  id: {type: DataTypes.INTEGER, primaryKey: true},
-  name: {type: DataTypes.STRING(50), allowNull: false},
-  age: {type: DataTypes.INTEGER, allowNull: true},
-  breed: {type: DataTypes.STRING(25), allowNull: true},
-  color: {type: DataTypes.STRING(25), allowNull: true},
-  gender: {type: DataTypes.STRING(25), allowNull: true}
-},{
-  tableName: 'pets',
-  sequelize
-})
+Pet.init(
+  {
+    id: { type: DataTypes.INTEGER, primaryKey: true },
+    name: { type: DataTypes.STRING(50), allowNull: false },
+    age: { type: DataTypes.INTEGER, allowNull: true },
+    breed: { type: DataTypes.STRING(25), allowNull: true },
+    color: { type: DataTypes.STRING(25), allowNull: true },
+    gender: { type: DataTypes.STRING(25), allowNull: true },
+  },
+  {
+    tableName: "pets",
+    sequelize,
+  },
+);
 
 export default Pet;
