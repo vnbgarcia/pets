@@ -18,6 +18,6 @@ export const errorHandler = (
   } else if (err instanceof ValidationError) {
     res.status(422).json({ message: err.message });
   } else {
-    res.status(500).json({ message: err })
+    res.status(500).json({ message: err });
   }
-}
+};
