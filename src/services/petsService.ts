@@ -1,7 +1,7 @@
 import { notFoundError } from "../models/exceptions";
 import Pet from "../models/pet";
 
-const notFound = new Error("pet not found");
+const notFound = new notFoundError("pet not found");
 
 export class PetsService {
   async fetchPets(): Promise<Pet[]> {
