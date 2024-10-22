@@ -1,9 +1,18 @@
+import { z } from "zod";
 import { notFoundError } from "../models/exceptions";
 import Pet from "../models/pet";
 
 const notFound = new notFoundError("pet not found");
 
 export class PetsService {
+  petRequest = z.object({
+    name: z.string().min(3).max(50),
+    age: z.optional(z.number().int().min(0)),
+    breed: z.optional(z.string().max(25)),
+    color: z.optional(z.string().max(25)),
+    gender: z.optional(z.string().max(25)),
+});
+
   async fetchPets(): Promise<Pet[]> {
     return await Pet.findAll();
   }
