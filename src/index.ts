@@ -5,14 +5,18 @@ import { petsRouter } from "./routes/petsRoutes";
 import { errorHandler } from "./middlewares/errorMidleware";
 import sequelize from "./config/database";
 
-const app = express();
+export const app = express();
 const port = 3000;
 
 app.use(json());
 app.use(petsRouter);
 app.use(errorHandler);
 
-sequelize.sync({ force: true }).then(() => {
-  console.log("Database is synced");
-  app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
-});
+if (require.main === module) {
+  sequelize.sync({ force: true }).then(() => {
+    console.log("Database is synced");
+    app.listen(port, () =>
+      console.log(`Listening at http://localhost:${port}`),
+    );
+  });
+}
