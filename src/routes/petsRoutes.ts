@@ -7,6 +7,129 @@ import {
   updatePetById,
 } from "../controllers/petsController";
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Pet:
+ *       type: object
+ *       required:
+ *         - name
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: Auto-generated id of the pet
+ *         name:
+ *           type: string
+ *           description: The name of the pet
+ *         age:
+ *           type: integer
+ *           description: The age of the pet
+ *         breed:
+ *           type: string
+ *           description: The breed of the pet
+ *         color:
+ *           type: string
+ *           description: The color of the pet
+ *         gender:
+ *           type: string
+ *           description: The gender of the pet
+ */
+
+/**
+ * @swagger
+ * /pets:
+ *   get:
+ *     tags: [Pets]
+ *     summary: Get all pets
+ *     responses:
+ *       200:
+ *         description: List of pets
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Pet'
+ *   post:
+ *     tags: [Pets]
+ *     summary: Create a new pet
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Pet'
+ *     responses:
+ *       201:
+ *         description: Pet created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Pet'
+ *
+ * /pets/{petId}:
+ *   get:
+ *     tags: [Pets]
+ *     summary: Get a pet by ID
+ *     parameters:
+ *       - in: path
+ *         name: petId
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID of the pet
+ *     responses:
+ *       200:
+ *         description: Pet found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Pet'
+ *       404:
+ *         description: Pet not found
+ *   put:
+ *     tags: [Pets]
+ *     summary: Update a pet
+ *     parameters:
+ *       - in: path
+ *         name: petId
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID of the pet
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Pet'
+ *     responses:
+ *       200:
+ *         description: Pet updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Pet'
+ *       404:
+ *         description: Pet not found
+ *   delete:
+ *     tags: [Pets]
+ *     summary: Delete a pet
+ *     parameters:
+ *       - in: path
+ *         name: petId
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: ID of the pet
+ *     responses:
+ *       204:
+ *         description: Pet deleted successfully
+ *       404:
+ *         description: Pet not found
+ */
+
 export const petsRouter = Router()
   .get("/pets", listPets)
   .post("/pets", createPet)
