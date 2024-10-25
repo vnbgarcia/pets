@@ -12,8 +12,10 @@
   "author": "Murilo Beltrame",
   "license": "MIT",
   "dependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.6",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "express-async-errors": "^3.1.1",

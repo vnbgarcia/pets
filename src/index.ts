@@ -6,6 +6,7 @@ import swaggerJsdoc from "swagger-jsdoc";
 import { petsRouter } from "./routes/petsRoutes";
 import { errorHandler } from "./middlewares/errorMidleware";
 import sequelize from "./config/database";
+import { usersRouter } from "./routes/userRoutes";
 
 const options = {
   definition: {
@@ -31,8 +32,8 @@ const port = 3000;
 const specs = swaggerJsdoc(options);
 
 app.use(json());
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
-app.use(petsRouter);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs)); // Added user routes under /api prefix
+app.use(petsRouter, usersRouter);
 app.use(errorHandler);
 
 if (require.main === module) {

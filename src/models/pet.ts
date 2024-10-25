@@ -12,7 +12,7 @@ import sequelize from "../config/database";
  *       properties:
  *         id:
  *           type: integer
- *           description: Auto-generated id of the pet
+ *           description: The auto-generated id of the pet
  *         name:
  *           type: string
  *           description: The name of the pet
