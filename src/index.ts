@@ -22,7 +22,7 @@ const options = {
       },
     ],
   },
-  apis: ["./src/routes/*.ts"], // files containing annotations
+  apis: ["./src/**/*.ts"], // files containing annotations
 };
 
 export const app = express();
