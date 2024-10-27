@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { NotFoundError } from "../models/exceptions";
+import { BadRequestError, NotFoundError } from "../models/exceptions";
 import { ZodError } from "zod";
 import { ValidationError } from "sequelize";
 
@@ -13,7 +13,7 @@ export const errorHandler = (
   next: NextFunction,
 ) => {
   console.error("Got an error", err);
-  if (err instanceof ZodError) {
+  if (err instanceof ZodError || err instanceof BadRequestError) {
     res.status(400).json({ message: "Invalid data" });
   } else if (err instanceof NotFoundError) {
     res.status(404).json({ message: err.message });

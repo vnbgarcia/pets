@@ -6,11 +6,14 @@ const badRequest = new BadRequestError("Cant create the record");
 
 export class UserService {
   async create(userData: { name: string; email: string; password: string }) {
-    const existingUser = await User.findOne({
+    const existingUser = await User.count({
       where: { email: userData.email },
     });
-    if (existingUser) throw badRequest;
-    return User.create(userData);
+    if (existingUser > 0) throw badRequest;
+    const createdUser = await User.create(userData);
+    return User.findByPk(createdUser.id, {
+      attributes: { exclude: ["password"] },
+    });
   }
 
   async getUser(id: number) {

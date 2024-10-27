@@ -35,3 +35,34 @@ content-type: application/json
 ### 
 
 DELETE http://localhost:3000/pets/3
+
+###
+
+POST http://localhost:3000/users
+content-type: application/json
+
+{
+  "email": "john@inter.net",
+  "password": "123456",
+  "name": "John Doe"
+}
+
+###
+
+GET http://localhost:3000/users/9
+
+###
+
+PATCH http://localhost:3000/users/9
+content-type: application/json
+
+{
+  "email": "john@inter.net",
+  "password": "Mudar@123",
+  "name": "John Doe"
+}
+
+
+###
+
+DELETE http://localhost:3000/users/9

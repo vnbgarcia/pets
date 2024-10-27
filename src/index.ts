@@ -33,7 +33,8 @@ const specs = swaggerJsdoc(options);
 
 app.use(json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs)); // Added user routes under /api prefix
-app.use(petsRouter, usersRouter);
+app.use(petsRouter);
+app.use(usersRouter);
 app.use(errorHandler);
 
 if (require.main === module) {
