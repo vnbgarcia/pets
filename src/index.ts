@@ -7,6 +7,7 @@ import { petsRouter } from "./routes/petsRoutes";
 import { errorHandler } from "./middlewares/errorMidleware";
 import sequelize from "./config/database";
 import { usersRouter } from "./routes/userRoutes";
+import { authRouter } from "./routes/authRoutes";
 
 const options = {
   definition: {
@@ -33,6 +34,7 @@ const specs = swaggerJsdoc(options);
 
 app.use(json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs)); // Added user routes under /api prefix
+app.use(authRouter);
 app.use(petsRouter);
 app.use(usersRouter);
 app.use(errorHandler);

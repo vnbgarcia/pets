@@ -53,7 +53,7 @@ GET http://localhost:3000/users/9
 
 ###
 
-PATCH http://localhost:3000/users/9
+PATCH http://localhost:3000/users/1
 content-type: application/json
 
 {
@@ -66,3 +66,13 @@ content-type: application/json
 ###
 
 DELETE http://localhost:3000/users/9
+
+### 
+
+POST http://localhost:3000/token
+content-type: application/json
+
+{
+  "email": "john@inter.net",
+  "password": "Mudar@123"
+}

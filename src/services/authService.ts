@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import User from "../models/user";
 import { BadRequestError } from "../models/exceptions";
 
-const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
+const JWT_SECRET = process.env.JWT_SECRET!;
 
 export class AuthService {
   async login(email: string, password: string) {
