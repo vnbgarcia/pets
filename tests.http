@@ -1,12 +1,65 @@
+# @name createUser
+POST http://localhost:3000/users
+content-type: application/json
+
+{
+  "email": "john@inter.net",
+  "password": "123456",
+  "name": "John Doe"
+}
+
+###
+
+# @name login
+POST http://localhost:3000/token
+content-type: application/json
+
+{
+  "email": "john@inter.net",
+  "password": "123456"
+}
+
+### 
+
+@userId = {{createUser.response.body.id}}
+@authToken = {{login.response.body.token}}
+
+###
+
+### USERS
+
+GET http://localhost:3000/users/{{userId}}
+authorization: Bearer {{authToken}}
+
+###
+
+PATCH http://localhost:3000/users/{{userId}}
+authorization: Bearer {{authToken}}
+content-type: application/json
+
+{
+  "email": "john@inter.net",
+  "password": "Mudar@123",
+  "name": "John Doe"
+}
+
+###
+
+DELETE http://localhost:3000/users/{{userId}}
+authorization: Bearer {{authToken}}
+
+###
+
+### PETS
+
 GET http://localhost:3000/pets
+authorization: Bearer {{authToken}}
 
 ###
 
-GET http://localhost:3000/pets/3
-
-###
-
+# @name createPet
 POST http://localhost:3000/pets
+authorization: Bearer {{authToken}}
 content-type: application/json
 
 {
@@ -20,7 +73,17 @@ content-type: application/json
 
 ###
 
-PUT http://localhost:3000/pets/3
+@petId = {{createPet.response.body.id}}
+
+###
+
+GET http://localhost:3000/pets/{{petId}}
+authorization: Bearer {{authToken}}
+
+###
+
+PUT http://localhost:3000/pets/{{petId}}
+authorization: Bearer {{authToken}}
 content-type: application/json
 
 {
@@ -34,45 +97,7 @@ content-type: application/json
 
 ### 
 
-DELETE http://localhost:3000/pets/3
+DELETE http://localhost:3000/pets/{{petId}}
+authorization: Bearer {{authToken}}
 
 ###
-
-POST http://localhost:3000/users
-content-type: application/json
-
-{
-  "email": "john@inter.net",
-  "password": "123456",
-  "name": "John Doe"
-}
-
-###
-
-GET http://localhost:3000/users/9
-
-###
-
-PATCH http://localhost:3000/users/1
-content-type: application/json
-
-{
-  "email": "john@inter.net",
-  "password": "Mudar@123",
-  "name": "John Doe"
-}
-
-
-###
-
-DELETE http://localhost:3000/users/9
-
-### 
-
-POST http://localhost:3000/token
-content-type: application/json
-
-{
-  "email": "john@inter.net",
-  "password": "Mudar@123"
-}
