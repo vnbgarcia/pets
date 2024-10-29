@@ -9,8 +9,8 @@ export const listPets = async (req: Request, res: Response) => {
 };
 
 export const createPet = async (req: Request, res: Response) => {
-  const result = await service.createPet(req.body);
-  res.status(201).json(result);
+  const createdPet = await service.createPet(req.body);
+  res.status(201).json(createdPet);
 };
 
 export const getPetById = async (req: Request, res: Response) => {

@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { notFoundError } from "../models/exceptions";
+import { NotFoundError } from "../models/exceptions";
 import Pet from "../models/pet";
 
-const notFound = new notFoundError("pet not found");
+const notFound = new NotFoundError("Pet not found");
 
 export class PetsService {
   petRequest = z.object({
@@ -11,24 +11,26 @@ export class PetsService {
     breed: z.optional(z.string().max(25)),
     color: z.optional(z.string().max(25)),
     gender: z.optional(z.string().max(25)),
-});
+  });
 
   async fetchPets(): Promise<Pet[]> {
     return await Pet.findAll();
   }
 
   async getPet(id: number): Promise<Pet | undefined> {
-    const foundPet = await Pet.findByPk(id);
-    if (foundPet === null) throw notFound;
-    return foundPet;
+    const pet = await Pet.findByPk(id);
+    if (pet === null) throw notFound;
+    return pet;
   }
 
   async createPet(pet: Pet): Promise<Pet> {
+    this.petRequest.parse(pet);
     const createdPet = await Pet.create({ ...pet });
     return createdPet;
   }
 
   async updatePet(id: number, pet: Pet): Promise<void> {
+    this.petRequest.parse(pet);
     const dontExists = (await Pet.findByPk(id)) === null;
     if (dontExists) throw notFound;
     await Pet.update({ ...pet }, { where: { id } });
