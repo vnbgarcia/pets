@@ -1,4 +1,4 @@
-export class NotFoundError extends Error {
+export class notFoundError extends Error {
   constructor(message: string) {
     super(message);
     this.name = "NotFoundError";

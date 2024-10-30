@@ -10,6 +10,7 @@ import { usersRouter } from "./routes/userRoutes";
 import { authRouter } from "./routes/authRoutes";
 import { securityHandler } from "./middlewares/authMiddleware";
 import { usersUnprotectedRouter } from "./routes/userUnprotectedRoutes";
+import cors from 'cors';
 
 const options = {
   definition: {
@@ -32,6 +33,7 @@ const options = {
 export const app = express();
 const port = 3000;
 
+app.use(cors({ origin: "*"}))
 const specs = swaggerJsdoc(options);
 
 app.use(json());

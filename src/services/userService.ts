@@ -1,7 +1,7 @@
 import User from "../models/user";
-import { BadRequestError, NotFoundError } from "../models/exceptions";
+import { BadRequestError, notFoundError } from "../models/exceptions";
 
-const notFound = new NotFoundError("Pet not found");
+const notFound = new notFoundError("Pet not found");
 const badRequest = new BadRequestError("Cant create the record");
 
 export class UserService {

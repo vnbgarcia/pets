@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { NotFoundError } from "../models/exceptions";
+import { notFoundError } from "../models/exceptions";
 import Pet from "../models/pet";
 
-const notFound = new NotFoundError("Pet not found");
+const notFound = new notFoundError("Pet not found");
 
 export class PetsService {
   petRequest = z.object({
